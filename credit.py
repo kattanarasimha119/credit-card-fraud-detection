@@ -1,0 +1,24 @@
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+from matplotlib import gridspec 
+data = pd.read_csv("cerdit card.csv") 
+print(data)
+data.head()
+# Print the shape of the data 
+# data = data.sample(frac = 0.1, random_state = 48) 
+print(data.shape) 
+print(data.describe()) 
+# Determine number of fraud cases in dataset 
+fraud = data[data['Amount'] == 1] 
+valid = data[data['Amount'] == 0] 
+if len(valid)==0:
+  outlierFraction = 0
+else:
+    outlierFraction = len(fraud)/float(len(valid))
+print(outlierFraction) 
+print('Fraud Cases: {}'.format(len(data[data['Amount'] == 1]))) 
+print('Valid Transactions: {}'.format(len(data[data['Amount'] == 0]))) 
+print("Amount details of the fraudulent transaction")
+fraud.Amount.describe()
